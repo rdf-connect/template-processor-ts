@@ -1,5 +1,5 @@
 {
-  "name": "@rdf-connect/template-processor-ts",
+  "name": "@rdfc/template-processor-ts",
   "version": "0.0.0",
   "description": "Template to kickstart the development of your next TypeScript processor.",
   "type": "module",
@@ -18,10 +18,12 @@
     "url": "https://github.com/rdf-connect/template-processor-ts"
   },
   "author": "Jens Pots",
+  "contributors": [
+    "Ieben Smessaert"
+  ],
   "license": "MIT",
   "devDependencies": {
-    "@ajuvercr/js-runner": "^0.1.20",
-    "@treecg/connector-types": "^1.2.1",
+    "@rdfc/js-runner": "^0.2.2",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitest/coverage-v8": "^1.6.0",

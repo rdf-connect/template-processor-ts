@@ -1,4 +1,4 @@
-import { Stream, Writer } from "@treecg/connector-types";
+import { Stream, Writer } from "@rdfc/js-runner";
 
 /**
  * The logging function is a very simple processor which simply logs the
