@@ -1,5 +1,5 @@
 import { log } from "../src";
-import { SimpleStream } from "@ajuvercr/js-runner";
+import { SimpleStream } from "@rdfc/js-runner";
 import { expect, describe, test, vi } from "vitest";
 
 describe("log", () => {

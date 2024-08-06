@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { extractProcessors, extractSteps, Source } from "@ajuvercr/js-runner";
+import { extractProcessors, extractSteps, Source } from "@rdfc/js-runner";
 
 const pipeline = `
         @prefix js: <https://w3id.org/conn/js#>.
@@ -10,8 +10,12 @@ const pipeline = `
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
         @prefix sh: <http://www.w3.org/ns/shacl#>.
 
-        <> owl:imports <./node_modules/@ajuvercr/js-runner/ontology.ttl>, <./processors.ttl>.
+        <> owl:imports <./node_modules/@rdfc/js-runner/ontology.ttl>, <./processor.ttl>.
 
+        [ ] a :Channel;
+            :reader <incoming>.
+        [ ] a :Channel;
+            :writer <outgoing>.
         <incoming> a js:JsReaderChannel.
         <outgoing> a js:JsWriterChannel.
 

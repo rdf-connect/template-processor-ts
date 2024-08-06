@@ -1,4 +1,7 @@
-import { Stream, Writer } from "@treecg/connector-types";
+import { Stream, Writer } from "@rdfc/js-runner";
+import { getLoggerFor } from "./utils/logUtil";
+
+const logger = getLoggerFor("log");
 
 /**
  * The logging function is a very simple processor which simply logs the
@@ -34,7 +37,7 @@ export function log(
     incoming.on("end", () => {
         outgoing
             .end()
-            .then(() => console.log("Incoming stream terminated."))
+            .then(() => logger.info("Incoming stream terminated."))
             .finally();
     });
 
