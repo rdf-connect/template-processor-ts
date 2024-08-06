@@ -23,6 +23,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@rdfc/file-utils-processors-ts": "^0.5.4",
     "@rdfc/js-runner": "^0.2.2",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
