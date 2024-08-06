@@ -10,7 +10,7 @@ const pipeline = `
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
         @prefix sh: <http://www.w3.org/ns/shacl#>.
 
-        <> owl:imports <./node_modules/@rdfc/js-runner/ontology.ttl>, <./processors.ttl>.
+        <> owl:imports <./node_modules/@rdfc/js-runner/ontology.ttl>, <./processor.ttl>.
 
         [ ] a :Channel;
             :reader <incoming>.
