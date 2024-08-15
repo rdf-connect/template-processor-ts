@@ -32,7 +32,7 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.4",
-    "lint-staged": "^15.2.8",
+    "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
@@ -41,6 +41,6 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "winston": "^3.13.1"
+    "winston": "^3.14.2"
   }
 }
