@@ -5,10 +5,9 @@ const PROCESSOR_NAME = "template-processor-ts";
 const consoleTransport = new winston.transports.Console();
 consoleTransport.level =
     process.env.LOG_LEVEL ||
-    process.env.DEBUG?.includes(PROCESSOR_NAME) ||
-    process.env.DEBUG === "*"
+    (process.env.DEBUG?.includes(PROCESSOR_NAME) || process.env.DEBUG === "*"
         ? "debug"
-        : "info";
+        : "info");
 
 const classLoggers = new WeakMap<Instance, Logger>();
 
