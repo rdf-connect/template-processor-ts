@@ -9,19 +9,25 @@ consoleTransport.level =
         ? "debug"
         : "info");
 
-const classLoggers = new WeakMap<Instance, Logger>();
+const classLoggers = new WeakMap<Constructor, Logger>();
+const stringLoggers = new Map<string, Logger>();
 
 export function getLoggerFor(loggable: string | Instance): Logger {
     let logger: Logger;
     if (typeof loggable === "string") {
-        logger = createLogger(loggable);
+        if (stringLoggers.has(loggable)) {
+            logger = stringLoggers.get(loggable)!;
+        } else {
+            logger = createLogger(loggable);
+            stringLoggers.set(loggable, logger);
+        }
     } else {
         const { constructor } = loggable;
-        if (classLoggers.has(loggable)) {
-            logger = classLoggers.get(loggable)!;
+        if (classLoggers.has(constructor)) {
+            logger = classLoggers.get(constructor)!;
         } else {
             logger = createLogger(constructor.name);
-            classLoggers.set(loggable, logger);
+            classLoggers.set(constructor, logger);
         }
     }
     return logger;
