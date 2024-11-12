@@ -41,6 +41,6 @@
     "vitest": "^2.1.4"
   },
   "dependencies": {
-    "winston": "^3.16.0"
+    "winston": "^3.17.0"
   }
 }
