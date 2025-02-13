@@ -50,7 +50,11 @@ describe("processor", () => {
         expect(args[0].length).toBe(2);
 
         const [[incoming, outgoing]] = args;
-        expect(incoming.ty.id).toBe("https://w3id.org/conn/js#JsReaderChannel");
-        expect(outgoing.ty.id).toBe("https://w3id.org/conn/js#JsWriterChannel");
+        expect(incoming.ty.value).toBe(
+            "https://w3id.org/conn/js#JsReaderChannel",
+        );
+        expect(outgoing.ty.value).toBe(
+            "https://w3id.org/conn/js#JsWriterChannel",
+        );
     });
 });
