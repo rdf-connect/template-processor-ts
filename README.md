@@ -30,11 +30,11 @@ An example configuration of the processor can be found in the `example` director
 You can run this example by executing the following command:
 
 ```bash
-npx js-runner example/pipeline.ttl
+npx @rdfc/js-runner example/pipeline.ttl
 ```
 
 To enable all debug logs, add `DEBUG=*` before the command:
 
 ```bash
-DEBUG=* npx js-runner example/pipeline.ttl
+DEBUG=* npx @rdfc/js-runner example/pipeline.ttl
 ```
