@@ -25,8 +25,8 @@
   "devDependencies": {
     "@rdfc/file-utils-processors-ts": "^0.6.0",
     "@rdfc/js-runner": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.26.0",
-    "@typescript-eslint/parser": "^8.26.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
     "@vitest/coverage-v8": "^3.0.8",
     "dotenv": "^16.4.7",
     "eslint": "^8.57.0",
