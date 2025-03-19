@@ -27,7 +27,7 @@
     "@rdfc/js-runner": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
-    "@vitest/coverage-v8": "^3.0.8",
+    "@vitest/coverage-v8": "^3.0.9",
     "dotenv": "^16.4.7",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^10.1.1",
@@ -38,7 +38,7 @@
     "tsc-alias": "^1.8.11",
     "typescript": "^5.8.2",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.0.8"
+    "vitest": "^3.0.9"
   },
   "dependencies": {
     "winston": "^3.17.0"
