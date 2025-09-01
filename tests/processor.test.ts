@@ -1,60 +1,29 @@
-import { expect, test, describe } from "vitest";
-import { extractProcessors, extractSteps, Source } from "@rdfc/js-runner";
+import { describe, expect, test } from "vitest";
+import { checkProcDefinition, getProc } from "@rdfc/js-runner/lib/testUtils";
 
-const pipeline = `
-        @prefix js: <https://w3id.org/conn/js#>.
-        @prefix ws: <https://w3id.org/conn/ws#>.
-        @prefix : <https://w3id.org/conn#>.
-        @prefix owl: <http://www.w3.org/2002/07/owl#>.
-        @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-        @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-        @prefix sh: <http://www.w3.org/ns/shacl#>.
+import { TemplateProcessor } from "../src";
 
-        <> owl:imports <./node_modules/@rdfc/js-runner/ontology.ttl>, <./processor.ttl>.
+describe("Template processor tests", async () => {
+    test("rdfc:TemplateProcessorJs is properly defined", async () => {
+        const processorConfig = `
+        @prefix rdfc: <https://w3id.org/rdf-connect#>.
 
-        [ ] a :Channel;
-            :reader <incoming>.
-        [ ] a :Channel;
-            :writer <outgoing>.
-        <incoming> a js:JsReaderChannel.
-        <outgoing> a js:JsWriterChannel.
+        <http://example.com/ns#processor> a rdfc:TemplateProcessorJs;
+          rdfc:reader <jr>;
+          rdfc:writer <jw>.
+        `;
 
-        [ ] a js:Log;
-            js:incoming <incoming>;
-            js:outgoing <outgoing>.
-    `;
+        const configLocation = process.cwd() + "/processor.ttl";
+        await checkProcDefinition(configLocation, "TemplateProcessorJs");
 
-describe("processor", () => {
-    test("definition", async () => {
-        expect.assertions(5);
-
-        const source: Source = {
-            value: pipeline,
-            baseIRI: process.cwd() + "/config.ttl",
-            type: "memory",
-        };
-
-        // Parse pipeline into processors.
-        const {
-            processors,
-            quads,
-            shapes: config,
-        } = await extractProcessors(source);
-
-        // Extract the Log processor.
-        const env = processors.find((x) => x.ty.value.endsWith("Log"))!;
-        expect(env).toBeDefined();
-
-        const args = extractSteps(env, quads, config);
-        expect(args.length).toBe(1);
-        expect(args[0].length).toBe(2);
-
-        const [[incoming, outgoing]] = args;
-        expect(incoming.ty.value).toBe(
-            "https://w3id.org/conn/js#JsReaderChannel",
+        const processor = await getProc<TemplateProcessor>(
+            processorConfig,
+            "TemplateProcessorJs",
+            configLocation,
         );
-        expect(outgoing.ty.value).toBe(
-            "https://w3id.org/conn/js#JsWriterChannel",
-        );
+        await processor.init();
+
+        expect(processor.reader.constructor.name).toBe("ReaderInstance");
+        expect(processor.writer?.constructor.name).toBe("WriterInstance");
     });
 });
