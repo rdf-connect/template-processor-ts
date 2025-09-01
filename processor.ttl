@@ -1,39 +1,27 @@
-@prefix js: <https://w3id.org/conn/js#>.
-@prefix fno: <https://w3id.org/function/ontology#>.
-@prefix fnom: <https://w3id.org/function/vocabulary/mapping#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix : <https://w3id.org/conn#>.
+@prefix rdfc: <https://w3id.org/rdf-connect#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-js:Log a js:JsProcess;
-    js:file <./lib/index.js>;
-    js:function "log";
-    js:location <./>;
-    js:mapping [
-        a fno:Mapping;
-        fno:parameterMapping [
-            a fnom:PositionParameterMapping;
-            fnom:functionParameter "incoming";
-            fnom:implementationParameterPosition "0"^^xsd:int;
-        ], [
-            a fnom:PositionParameterMapping;
-            fnom:functionParameter "outgoing";
-            fnom:implementationParameterPosition "1"^^xsd:int;
-        ];
-    ].
+rdfc:TemplateProcessorJs rdfc:jsImplementationOf rdfc:Processor;
+    rdfs:label "JS/TS Template Processor";
+    rdfs:comment "Template processor to kickstart the development of your next TypeScript RDF-Connect processor.";
+    rdfc:file <./lib/index.js>;
+    rdfc:class "TemplateProcessor";
+    rdfc:entrypoint <./>.
 
 [ ] a sh:NodeShape;
-    sh:targetClass js:Log;
+    sh:targetClass rdfc:TemplateProcessorJs;
     sh:property [
-        sh:class :ReaderChannel;
-        sh:path js:incoming;
-        sh:name "incoming";
-        sh:maxCount 1;
+        sh:class rdfc:Reader;
+        sh:path rdfc:reader;
+        sh:name "reader";
         sh:minCount 1;
+        sh:maxCount 1;
     ], [
-        sh:class :WriterChannel;
-        sh:path js:outgoing;
-        sh:name "outgoing";
+        sh:class rdfc:Writer;
+        sh:path rdfc:writer;
+        sh:name "writer";
+        sh:minCount 0;
         sh:maxCount 1;
-        sh:minCount 1;
     ].
