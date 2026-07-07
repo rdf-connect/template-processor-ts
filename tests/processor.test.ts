@@ -1,29 +1,37 @@
 import { describe, expect, test } from "vitest";
-import { checkProcDefinition, getProc } from "@rdfc/js-runner/lib/testUtils";
+import { ProcHelper } from "@rdfc/js-runner/lib/testUtils";
+import { resolve } from "path";
 
-import { TemplateProcessor } from "../src";
+import { TemplateArgs, TemplateProcessor } from "../src";
+
+const pipeline = `
+        @prefix rdfc: <https://w3id.org/rdf-connect#>.
+
+        <http://example.com/processor> a rdfc:TemplateProcessorJs;
+          rdfc:reader <incoming>;
+          rdfc:writer <outgoing>.
+        `;
 
 describe("Template processor tests", async () => {
     test("rdfc:TemplateProcessorJs is properly defined", async () => {
-        const processorConfig = `
-        @prefix rdfc: <https://w3id.org/rdf-connect#>.
+        const helper = new ProcHelper<TemplateProcessor>();
 
-        <http://example.com/ns#processor> a rdfc:TemplateProcessorJs;
-          rdfc:reader <jr>;
-          rdfc:writer <jw>.
-        `;
+        await helper.importFile(resolve("./processor.ttl"));
+        await helper.importInline("./pipeline.ttl", pipeline);
 
-        const configLocation = process.cwd() + "/processor.ttl";
-        await checkProcDefinition(configLocation, "TemplateProcessorJs");
+        const config = helper.getConfig("TemplateProcessorJs");
 
-        const processor = await getProc<TemplateProcessor>(
-            processorConfig,
-            "TemplateProcessorJs",
-            configLocation,
+        expect(config.location).toBeDefined();
+        expect(config.clazz).toBe("TemplateProcessor");
+        expect(config.file).toBeDefined();
+
+        const proc = <TemplateProcessor & TemplateArgs>(
+            await helper.getProcessor("http://example.com/processor")
         );
-        await processor.init();
 
-        expect(processor.reader.constructor.name).toBe("ReaderInstance");
-        expect(processor.writer?.constructor.name).toBe("WriterInstance");
+        expect(proc.reader.constructor.name).toBe("ReaderInstance");
+        expect(proc.writer?.constructor.name).toBe("WriterInstance");
+
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Wait a bit for the reading to complete
     });
 });

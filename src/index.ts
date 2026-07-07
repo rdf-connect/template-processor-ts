@@ -1,6 +1,6 @@
 import { Processor, type Reader, type Writer } from "@rdfc/js-runner";
 
-type TemplateArgs = {
+export type TemplateArgs = {
     reader: Reader;
     writer: Writer;
 };
