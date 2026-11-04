@@ -18,7 +18,7 @@ rdfcp:TemplateProcessorJs rdfc:jsImplementationOf rdfc:Processor;
     sh:targetClass rdfcp:TemplateProcessorJs;
     sh:property [
         sh:class rdfc:Reader;
-        sh:path rdfcp:reader;
+        sh:path rdfcp:input;
         sh:codeIdentifier "reader";
         sh:name "Input channel";
         sh:description "Input channel with the messages to log and forward.";
@@ -26,7 +26,7 @@ rdfcp:TemplateProcessorJs rdfc:jsImplementationOf rdfc:Processor;
         sh:maxCount 1;
     ], [
         sh:class rdfc:Writer;
-        sh:path rdfcp:writer;
+        sh:path rdfcp:output;
         sh:codeIdentifier "writer";
         sh:name "Output channel";
         sh:description "Output channel to which every incoming message is forwarded.";

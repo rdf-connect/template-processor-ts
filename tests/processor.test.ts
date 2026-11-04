@@ -9,8 +9,8 @@ const pipeline = `
         @prefix rdfcp: <https://w3id.org/rdf-connect/processors#>.
 
         <http://example.com/processor> a rdfcp:TemplateProcessorJs;
-          rdfcp:reader <incoming>;
-          rdfcp:writer <outgoing>.
+          rdfcp:input <incoming>;
+          rdfcp:output <outgoing>.
         `;
 
 describe("Template processor tests", async () => {
