@@ -18,13 +18,15 @@ rdfc:TemplateProcessorJs rdfc:jsImplementationOf rdfc:Processor;
     sh:property [
         sh:class rdfc:Reader;
         sh:path rdfc:reader;
-        sh:name "reader";
+        sh:codeIdentifier "reader";
+        sh:name "Input channel";
         sh:minCount 1;
         sh:maxCount 1;
     ], [
         sh:class rdfc:Writer;
         sh:path rdfc:writer;
-        sh:name "writer";
+        sh:codeIdentifier "writer";
+        sh:name "Output channel";
         sh:minCount 0;
         sh:maxCount 1;
     ].
