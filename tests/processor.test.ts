@@ -6,14 +6,15 @@ import { TemplateArgs, TemplateProcessor } from "../src";
 
 const pipeline = `
         @prefix rdfc: <https://w3id.org/rdf-connect#>.
+        @prefix rdfcp: <https://w3id.org/rdf-connect/processors#>.
 
-        <http://example.com/processor> a rdfc:TemplateProcessorJs;
-          rdfc:reader <incoming>;
-          rdfc:writer <outgoing>.
+        <http://example.com/processor> a rdfcp:TemplateProcessorJs;
+          rdfcp:reader <incoming>;
+          rdfcp:writer <outgoing>.
         `;
 
 describe("Template processor tests", async () => {
-    test("rdfc:TemplateProcessorJs is properly defined", async () => {
+    test("rdfcp:TemplateProcessorJs is properly defined", async () => {
         const helper = new ProcHelper<TemplateProcessor>();
 
         await helper.importFile(resolve("./processor.ttl"));

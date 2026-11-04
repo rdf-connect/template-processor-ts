@@ -12,6 +12,7 @@ Next, you can add the JS/TS TemplateProcessor to your pipeline configuration as 
 
 ```turtle
 @prefix rdfc: <https://w3id.org/rdf-connect#>.
+@prefix rdfcp: <https://w3id.org/rdf-connect/processors#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 
 # Import the processor
@@ -25,9 +26,9 @@ Next, you can add the JS/TS TemplateProcessor to your pipeline configuration as 
 # Add the `rdfc:processor <template>` statement under the `rdfc:consistsOf` statement of the `rdfc:NodeRunner`
 
 # Define and configure the processor
-<template> a rdfc:TemplateProcessorJs;
-      rdfc:reader <channel1>;
-      rdfc:writer <channel2>".
+<template> a rdfcp:TemplateProcessorJs;
+      rdfcp:reader <channel1>;
+      rdfcp:writer <channel2>".
 ```
 
 ## Development
