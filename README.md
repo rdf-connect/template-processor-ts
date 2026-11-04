@@ -28,7 +28,7 @@ Next, you can add the JS/TS TemplateProcessor to your pipeline configuration as 
 # Define and configure the processor
 <template> a rdfcp:TemplateProcessorJs;
       rdfcp:input <channel1>;
-      rdfcp:output <channel2>".
+      rdfcp:output <channel2>.
 ```
 
 ## Development
