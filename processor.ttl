@@ -1,12 +1,13 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix rdfc: <https://w3id.org/rdf-connect#>.
+@prefix rdfcp: <https://w3id.org/rdf-connect/processors#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
 <> owl:imports <lib/ontology.ttl>.
 
-rdfc:TemplateProcessorJs rdfc:jsImplementationOf rdfc:Processor;
+rdfcp:TemplateProcessorJs rdfc:jsImplementationOf rdfc:Processor;
     rdfs:label "JS/TS Template Processor";
     rdfs:comment "Template processor to kickstart the development of your next TypeScript RDF-Connect processor.";
     rdfc:file <./lib/index.js>;
@@ -14,17 +15,21 @@ rdfc:TemplateProcessorJs rdfc:jsImplementationOf rdfc:Processor;
     rdfc:entrypoint <./>.
 
 [ ] a sh:NodeShape;
-    sh:targetClass rdfc:TemplateProcessorJs;
+    sh:targetClass rdfcp:TemplateProcessorJs;
     sh:property [
         sh:class rdfc:Reader;
-        sh:path rdfc:reader;
-        sh:name "reader";
+        sh:path rdfcp:input;
+        sh:codeIdentifier "reader";
+        sh:name "Input channel";
+        sh:description "Input channel with the messages to log and forward.";
         sh:minCount 1;
         sh:maxCount 1;
     ], [
         sh:class rdfc:Writer;
-        sh:path rdfc:writer;
-        sh:name "writer";
+        sh:path rdfcp:output;
+        sh:codeIdentifier "writer";
+        sh:name "Output channel";
+        sh:description "Output channel to which every incoming message is forwarded.";
         sh:minCount 0;
         sh:maxCount 1;
     ].
