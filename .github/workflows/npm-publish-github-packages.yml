@@ -9,13 +9,13 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 24.x
             - run: npm ci
             - run: npm run build
-            - run: npm run tests
+            - run: npm run test
 
     publish:
         needs: build
@@ -24,10 +24,10 @@ jobs:
             contents: read
             packages: write
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 24.x
                   registry-url: https://npm.pkg.github.com/
             - run: npm ci
             - run: npm publish
